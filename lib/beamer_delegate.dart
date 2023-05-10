@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 
@@ -137,8 +139,9 @@ class AppPage extends StatelessWidget {
               Text(queryParams.toString()),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed(
+                  context.beamToNamed(
                     '/portal/session-group/1213/update',
+                    beamBackOnPop: true,
                   );
                 },
                 child: const Text('Push'),
