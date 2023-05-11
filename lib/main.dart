@@ -1,5 +1,5 @@
 import 'package:beamer/beamer.dart';
-import 'beamer_delegate.dart';
+import 'package:declarative_routing/router.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,11 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerDelegate: beamerDelegate,
-      routeInformationParser: BeamerParser(),
-      backButtonDispatcher: BeamerBackButtonDispatcher(
-        delegate: beamerDelegate,
-      ),
+      routerDelegate: goRouter.routerDelegate,
+      routeInformationParser: goRouter.routeInformationParser,
+      backButtonDispatcher: goRouter.backButtonDispatcher,
       title: 'Flutter Demo',
       theme: ThemeData.light(useMaterial3: true),
       darkTheme: ThemeData.dark(useMaterial3: true),
