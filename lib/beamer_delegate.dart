@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:developer';
 import 'package:beamer/beamer.dart';
-import 'bloc/counter_bloc.dart';
-
 import 'app_route.dart';
 
 final beamerDelegate = BeamerDelegate(
@@ -107,16 +104,12 @@ class AppPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              BlocBuilder<TestBloc, TestState>(
-                builder: (context, state) {
-                  return Text(
-                    state.name,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(color: Colors.greenAccent),
-                  );
-                },
+              Text(
+                name.toString(),
+                style: Theme.of(context)
+                    .textTheme
+                    .titleMedium
+                    ?.copyWith(color: Theme.of(context).colorScheme.primary),
               ),
               Text(params.toString()),
               Text(queryParams.toString()),

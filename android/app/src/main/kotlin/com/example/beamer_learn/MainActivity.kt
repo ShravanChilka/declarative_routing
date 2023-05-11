@@ -1,4 +1,4 @@
-package com.example.beamer_learn
+package com.example.declarative_routing
 
 import io.flutter.embedding.android.FlutterActivity
 

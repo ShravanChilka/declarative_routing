@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "beamer_learn" "\0"
+            VALUE "FileDescription", "declarative_routing" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "beamer_learn" "\0"
+            VALUE "InternalName", "declarative_routing" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "beamer_learn.exe" "\0"
-            VALUE "ProductName", "beamer_learn" "\0"
+            VALUE "OriginalFilename", "declarative_routing.exe" "\0"
+            VALUE "ProductName", "declarative_routing" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

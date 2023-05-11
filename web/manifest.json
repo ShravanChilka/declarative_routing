@@ -1,6 +1,6 @@
 {
-    "name": "beamer_learn",
-    "short_name": "beamer_learn",
+    "name": "declarative_routing",
+    "short_name": "declarative_routing",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
