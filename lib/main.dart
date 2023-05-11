@@ -1,4 +1,6 @@
 import 'package:beamer/beamer.dart';
+import 'package:beamer_learn/bloc/counter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'beamer_delegate.dart';
 import 'package:flutter/material.dart';
 
@@ -12,18 +14,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerDelegate: beamerDelegate,
-      routeInformationParser: BeamerParser(),
-      backButtonDispatcher: BeamerBackButtonDispatcher(
-        delegate: beamerDelegate,
-      ),
-      title: 'Flutter Demo',
-      theme: ThemeData.light(
-        useMaterial3: true,
-      ),
-      darkTheme: ThemeData.dark(
-        useMaterial3: true,
+    return BlocProvider(
+      create: (context) => TestBloc(),
+      child: MaterialApp.router(
+        routerDelegate: beamerDelegate,
+        routeInformationParser: BeamerParser(),
+        backButtonDispatcher: BeamerBackButtonDispatcher(
+          delegate: beamerDelegate,
+        ),
+        title: 'Flutter Demo',
+        theme: ThemeData.light(
+          useMaterial3: true,
+        ),
+        darkTheme: ThemeData.dark(
+          useMaterial3: true,
+        ),
       ),
     );
   }

@@ -1,38 +1,10 @@
-import 'dart:developer';
-
-import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dart:developer';
+import 'package:beamer/beamer.dart';
+import 'bloc/counter_bloc.dart';
 
-class AppRoute {
-  static const portal = '/portal';
-  static const sessionGroup = '/portal/session-group';
-  static const sessionGroupCreate = '/portal/session-group/create';
-  static const sessionGroupUpdate =
-      '/portal/session-group/:session_group_id/update';
-  static const sessionSubGroup =
-      '/portal/session-group/:session_group_id/session-sub-group';
-  static const sessionSubGroupCreate =
-      '/portal/session-group/:session_group_id/session-sub-group/create';
-  static const sessionSubGroupUpdate =
-      '/portal/session-group/:session_group_id/session-sub-group/:session_sub_group_id/update';
-  static const session =
-      '/portal/session-group/:session_group_id/session-sub-group/:session_sub_group_id/session';
-  static const sessionCreate =
-      '/portal/session-group/:session_group_id/session-sub-group/:session_sub_group_id/session/create';
-  static const sessionUpdate =
-      '/portal/session-group/:session_group_id/session-sub-group/:session_sub_group_id/session/:session_id/update';
-}
-
-extension SnakeCase on String {
-  String get snakecase {
-    final exp = RegExp(r'[A-Z]');
-    final output = replaceAllMapped(
-      exp,
-      (Match match) => '_${this[match.start].toLowerCase()}',
-    );
-    return output;
-  }
-}
+import 'app_route.dart';
 
 final beamerDelegate = BeamerDelegate(
   locationBuilder: RoutesLocationBuilder(
@@ -127,6 +99,7 @@ class AppPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log('build called');
     return Scaffold(
       body: Center(
         child: Padding(
@@ -134,21 +107,39 @@ class AppPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(name),
+              BlocBuilder<TestBloc, TestState>(
+                builder: (context, state) {
+                  return Text(
+                    state.name,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(color: Colors.greenAccent),
+                  );
+                },
+              ),
               Text(params.toString()),
               Text(queryParams.toString()),
               ElevatedButton(
-                onPressed: () {
-                  context.beamToNamed(
-                    '/portal/session-group/1213/update',
-                    beamBackOnPop: true,
-                  );
+                onPressed: () async {
+                  await Navigator.of(context)
+                      .push(
+                        MaterialPageRoute(
+                          builder: (context) => const AppPage(
+                            name: '/portal',
+                            params: {'id': 123},
+                          ),
+                        ),
+                      )
+                      .then(
+                        (value) => log(value.toString()),
+                      );
                 },
                 child: const Text('Push'),
               ),
               ElevatedButton(
                 onPressed: () {
-                  context.beamBack();
+                  Navigator.of(context).pop('return value');
                 },
                 child: const Text('Pop'),
               ),
